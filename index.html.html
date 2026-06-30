@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Inspira Estúdio Personal - Atendimento individualizado de Pilates Clássico Científico, Reabilitação Cardíaca e Avaliação Postural em Silvânia-GO.">
+<meta property="og:title" content="Inspira Estúdio Personal | Silvânia - GO">
+<meta property="og:description" content="Atendimento presencial individualizado. Pilates, Reabilitação Cardíaca e Avaliação Postural em Silvânia-GO.">
+<meta property="og:type" content="website">
+<title>Inspira Estúdio Personal | Silvânia - GO</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Inspira Estúdio Personal","description":"Estúdio de saúde física com atendimento individualizado","address":{"@type":"PostalAddress","addressLocality":"Silvânia","addressRegion":"GO","addressCountry":"BR"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --verde:#556B5D;
+  --verde-dark:#445748;
+  --verde-light:#DDE7DF;
+  --creme:#F7F4EE;
+  --cinza:#ECEAE5;
+  --branco:#FFFFFF;
+  --texto:#262626;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:var(--texto);background:var(--branco);overflow-x:hidden}
+
+/* ========== LOADER ========== */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--creme);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:32px;
+  transition:opacity .7s ease;
+}
+#loader.fade-out{
+  opacity:0;pointer-events:none;
+}
+
+/* Loader: logotipo SVG animado */
+.loader-brand{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+}
+.loader-wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:700;
+  letter-spacing:.08em;
+  color:var(--verde);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .8s ease .4s, transform .8s ease .4s;
+}
+.loader-sub{
+  font-family:'Manrope',sans-serif;
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--verde);opacity:0;
+  transition:opacity .6s ease 1s;
+}
+.loader-brand.show .loader-wordmark{opacity:1;transform:translateY(0)}
+.loader-brand.show .loader-sub{opacity:.65}
+
+/* SVG pose Pilates */
+#loader-svg{
+  width:min(220px,60vw);height:auto;
+  overflow:visible;
+}
+#loader-path{
+  fill:none;stroke:var(--verde);stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:900;stroke-dashoffset:900;
+  animation:drawLine 1.1s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+
+#lp-arms{
+  fill:none;stroke:var(--verde);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+  opacity:0;
+  animation:lpFadeIn .4s ease forwards .9s,
+            lpPull 1.5s cubic-bezier(.45,0,.2,1) forwards 1.3s;
+}
+@keyframes lpFadeIn{to{opacity:1}}
+/* cabo (polia->barra) + barra + os dois braços puxando */
+@keyframes lpPull{
+  0%   { d: path("M100,20 L100,28 M80,28 L120,28 M100,78 L80,28 M100,78 L120,28"); }
+  55%  { d: path("M100,20 L100,97 M80,97 L120,97 M100,78 L80,97 M100,78 L120,97"); }
+  100% { d: path("M100,20 L100,28 M80,28 L120,28 M100,78 L80,28 M100,78 L120,28"); }
+}
+
+/* pilha de peso: sobe quando a barra desce, e volta */
+#lp-weight{
+  fill:rgba(85,107,93,.15);stroke:var(--verde);stroke-width:1.4;
+  stroke-linejoin:round;
+  opacity:0;
+  transform-box:fill-box;transform-origin:center;
+  animation:lpFadeIn .4s ease forwards .9s,
+            lpWeightMove 1.5s cubic-bezier(.45,0,.2,1) forwards 1.3s;
+}
+@keyframes lpWeightMove{
+  0%   { transform:translateY(0); }
+  55%  { transform:translateY(-66px); }
+  100% { transform:translateY(0); }
+}
+
+/* Barra de progresso */
+.loader-bar-wrap{
+  width:min(180px,50vw);height:2px;
+  background:rgba(85,107,93,.15);border-radius:2px;overflow:hidden;
+}
+.loader-bar{
+  height:100%;background:var(--verde);border-radius:2px;
+  width:0%;transition:width 2.7s cubic-bezier(.4,0,.2,1);
+}
+
+/* ========== HEADER ========== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:18px 0;
+  transition:background .3s,box-shadow .3s;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+  isolation:isolate;
+  will-change:background;
+}
+header.scrolled{
+  background:rgba(247,244,238,.98);
+  box-shadow:0 2px 20px rgba(0,0,0,.07);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:48px;
+}
+
+/* Logo no header: SVG inline */
+.logo-header{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.logo-header-mark{
+  width:36px;height:36px;
+}
+.logo-header-text{
+  display:flex;flex-direction:column;line-height:1;
+}
+.logo-header-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--texto);letter-spacing:.02em;
+}
+.logo-header-sub{
+  font-size:.6rem;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--verde);margin-top:2px;
+}
+
+nav{display:flex;align-items:center;gap:32px}
+nav.desktop{display:flex;align-items:center;gap:32px}
+nav a{
+  font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:500;
+  color:var(--texto);text-decoration:none;
+  line-height:1;white-space:nowrap;
+  display:inline-flex;align-items:center;
+  transition:color .2s;
+}
+nav a:hover{color:var(--verde)}
+.btn-whatsapp{
+  background:var(--verde);color:#fff!important;
+  padding:11px 22px;border-radius:100px;
+  font-size:.85rem;font-weight:600;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .15s;
+  white-space:nowrap;
+}
+.btn-whatsapp:hover{background:var(--verde-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--texto);border-radius:2px;transition:.3s}
+nav.mobile{display:none}
+@media(max-width:768px){
+  nav.desktop{display:none}
+  .hamburger{display:flex}
+  nav.mobile{
+    display:none;flex-direction:column;
+    position:fixed;inset:0;background:var(--creme);
+    align-items:center;justify-content:center;gap:36px;
+    z-index:200;
+  }
+  nav.mobile.open{display:flex}
+  nav.mobile a{font-size:1.3rem}
+  .mobile-close{
+    position:absolute;top:24px;right:24px;
+    background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--texto);
+  }
+}
+
+/* ========== HERO ========== */
+#hero{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--creme) 0%,#eee8df 100%);
+  display:flex;align-items:center;padding-top:90px;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;padding:80px 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+.hero-text h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,4vw,3.6rem);
+  font-weight:700;line-height:1.15;
+  color:var(--texto);margin-bottom:28px;
+}
+.hero-text p{font-size:1rem;line-height:1.75;color:#444;margin-bottom:16px}
+.hero-benefits{list-style:none;margin:28px 0 36px}
+.hero-benefits li{
+  padding:7px 0;font-size:.93rem;font-weight:500;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-benefits li::before{content:"✔";color:var(--verde);font-weight:700}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--verde);color:#fff;
+  padding:14px 28px;border-radius:100px;
+  font-weight:600;font-size:.95rem;text-decoration:none;
+  transition:background .2s,transform .15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--verde-dark);transform:translateY(-2px)}
+.btn-secondary{
+  border:2px solid var(--verde);color:var(--verde);
+  padding:13px 26px;border-radius:100px;
+  font-weight:600;font-size:.95rem;text-decoration:none;
+  transition:background .2s,color .2s,transform .15s;display:inline-block;
+}
+.btn-secondary:hover{background:var(--verde);color:#fff;transform:translateY(-2px)}
+.hero-image{position:relative}
+.hero-img-wrap{
+  border-radius:24px;overflow:hidden;
+  background:var(--verde-light);
+  aspect-ratio:4/5;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-img-placeholder{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,var(--verde-light) 0%,#c8dccb 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;color:var(--verde);
+}
+.hero-img-placeholder svg{width:80px;opacity:.4}
+.hero-img-placeholder p{font-size:.8rem;opacity:.6;font-weight:500}
+.hero-float{
+  position:absolute;
+  background:#fff;border-radius:16px;
+  padding:14px 18px;font-size:.82rem;font-weight:600;
+  box-shadow:0 8px 32px rgba(0,0,0,.1);
+  display:flex;align-items:center;gap:10px;color:var(--texto);
+}
+.hero-float .dot{width:10px;height:10px;background:var(--verde);border-radius:50%;flex-shrink:0}
+.float-1{bottom:10%;left:-5%}
+.float-2{top:12%;right:-5%}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;padding:60px 24px}
+  .hero-image{display:none}
+}
+
+/* ========== SECTION BASE ========== */
+section{padding:120px 0}
+@media(max-width:768px){section{padding:60px 0}}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+@media(max-width:768px){.container{padding:0 20px}}
+.section-label{
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--verde);margin-bottom:14px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;
+  line-height:1.2;margin-bottom:20px;
+}
+.section-text{font-size:1rem;line-height:1.8;color:#555;max-width:600px}
+
+/* fade-in */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ========== SOBRE ========== */
+#sobre{background:var(--creme)}
+.sobre-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+}
+.sobre-img-wrap{
+  border-radius:24px;overflow:hidden;
+  background:var(--verde-light);
+  aspect-ratio:3/4;
+  display:flex;align-items:center;justify-content:center;
+}
+.sobre-placeholder{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#c8dccb 0%,var(--verde-light) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--verde);opacity:.4;
+}
+.sobre-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.mini-card{
+  background:#fff;border-radius:16px;padding:20px;
+  border:1px solid var(--cinza);text-align:center;
+}
+.mini-card h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;margin-top:10px;margin-bottom:6px}
+.mini-card p{font-size:.8rem;color:#666;line-height:1.5}
+.mini-card-icon{
+  width:40px;height:40px;background:var(--verde-light);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto;
+  color:var(--verde);
+}
+@media(max-width:900px){
+  .sobre-inner{grid-template-columns:1fr}
+  .sobre-img-wrap{display:none}
+  .sobre-cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){.sobre-cards{grid-template-columns:1fr}}
+
+/* ========== SERVIÇOS ========== */
+#servicos{background:var(--branco)}
+.servicos-header{text-align:center;margin-bottom:60px}
+.servicos-header .section-text{margin:0 auto}
+.servicos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:1000px){.servicos-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){.servicos-grid{grid-template-columns:1fr}}
+.service-card{
+  background:var(--creme);border-radius:24px;padding:32px;
+  border:1px solid var(--cinza);
+  transition:transform .2s,box-shadow .2s;
+  display:flex;flex-direction:column;
+}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(85,107,93,.12)}
+.service-icon{
+  width:52px;height:52px;background:var(--verde-light);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;color:var(--verde);
+}
+.service-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;
+  margin-bottom:12px;
+}
+.service-card p{font-size:.88rem;line-height:1.7;color:#555;flex:1}
+.service-benefits{list-style:none;margin:20px 0 24px}
+.service-benefits li{
+  font-size:.82rem;color:#555;padding:5px 0;
+  display:flex;align-items:center;gap:8px;
+}
+.service-benefits li::before{content:"•";color:var(--verde);font-size:1.2em}
+.btn-service{
+  border:1.5px solid var(--verde);color:var(--verde);
+  padding:10px 20px;border-radius:100px;
+  font-size:.83rem;font-weight:600;text-decoration:none;
+  transition:all .2s;text-align:center;
+  margin-top:auto;
+}
+.btn-service:hover{background:var(--verde);color:#fff}
+
+/* ========== FORMULÁRIO ========== */
+#contato{background:var(--creme)}
+.form-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.form-left h2{margin-bottom:16px}
+.form-left p{font-size:.95rem;line-height:1.7;color:#555;margin-bottom:32px}
+.checkboxes{display:flex;flex-direction:column;gap:14px}
+.check-item{display:flex;align-items:center;gap:12px;cursor:pointer}
+.check-item input[type=checkbox]{display:none}
+.check-box{
+  width:22px;height:22px;border:2px solid var(--cinza);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;
+}
+.check-item input:checked ~ .check-box{background:var(--verde);border-color:var(--verde)}
+.check-item input:checked ~ .check-box::after{content:"✓";color:#fff;font-size:.8rem;font-weight:700}
+.check-label{font-size:.92rem;font-weight:500}
+.form-card{
+  background:#fff;border-radius:24px;padding:40px;
+  box-shadow:0 4px 40px rgba(0,0,0,.06);
+  border:1px solid var(--cinza);
+}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.83rem;font-weight:600;margin-bottom:7px;color:#444}
+.form-group input,.form-group textarea{
+  width:100%;padding:13px 16px;
+  border:1.5px solid var(--cinza);border-radius:12px;
+  font-family:'Manrope',sans-serif;font-size:.9rem;color:var(--texto);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  background:var(--creme);
+}
+.form-group input:focus,.form-group textarea:focus{
+  border-color:var(--verde);box-shadow:0 0 0 3px rgba(85,107,93,.1);
+  background:#fff;
+}
+.form-group textarea{resize:vertical;min-height:110px}
+.btn-submit{
+  width:100%;background:var(--verde);color:#fff;
+  border:none;padding:15px;border-radius:100px;
+  font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:background .2s,transform .15s;margin-top:8px;
+}
+.btn-submit:hover{background:var(--verde-dark);transform:translateY(-1px)}
+@media(max-width:900px){
+  .form-inner{grid-template-columns:1fr}
+  .form-left{order:2}
+  .form-card{order:1}
+}
+
+/* ========== DIFERENCIAIS ========== */
+#diferenciais{background:var(--branco)}
+.dif-header{text-align:center;margin-bottom:56px}
+.dif-header .section-text{margin:0 auto}
+.dif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:900px){.dif-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){.dif-grid{grid-template-columns:1fr}}
+.dif-card{
+  border:1px solid var(--cinza);border-radius:20px;padding:28px;
+  transition:transform .2s,border-color .2s;
+}
+.dif-card:hover{transform:translateY(-4px);border-color:var(--verde-light)}
+.dif-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--verde-light);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--verde);margin-bottom:18px;
+}
+.dif-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.dif-card p{font-size:.85rem;line-height:1.65;color:#666}
+
+/* ========== EQUIPE ========== */
+#equipe{background:var(--branco)}
+.equipe-header{text-align:center;margin-bottom:56px}
+.equipe-header .section-text{margin:0 auto}
+.equipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+@media(max-width:1000px){.equipe-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:550px){.equipe-grid{grid-template-columns:1fr}}
+.equipe-card{
+  text-align:center;border:1px solid var(--cinza);border-radius:20px;
+  padding:32px 24px;transition:transform .2s,box-shadow .2s;
+}
+.equipe-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(85,107,93,.1)}
+.equipe-avatar{
+  width:96px;height:96px;border-radius:50%;margin:0 auto 18px;
+  background:linear-gradient(160deg,var(--verde-light) 0%,#c8dccb 100%);
+  display:flex;align-items:center;justify-content:center;color:var(--verde);
+}
+.equipe-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.equipe-role{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--verde);margin-bottom:12px}
+.equipe-card p{font-size:.85rem;line-height:1.6;color:#666}
+
+/* ========== DEPOIMENTOS ========== */
+#depoimentos{background:var(--creme);overflow:hidden}
+.depoimentos-header{text-align:center;margin-bottom:56px}
+.depoimentos-header .section-text{margin:0 auto}
+.marquee-wrap{
+  width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.marquee-track{
+  display:flex;gap:24px;width:max-content;
+  animation:marquee 38s linear infinite;
+}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.depoimento-card{
+  flex:0 0 340px;background:#fff;border-radius:20px;padding:28px;
+  border:1px solid var(--cinza);
+}
+.depoimento-stars{color:var(--verde);font-size:.9rem;margin-bottom:14px;letter-spacing:2px}
+.depoimento-card p{font-size:.9rem;line-height:1.7;color:#444;margin-bottom:20px}
+.depoimento-autor{display:flex;align-items:center;gap:12px}
+.depoimento-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:var(--verde-light);color:var(--verde);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;
+}
+.depoimento-autor strong{display:block;font-size:.88rem;font-weight:700}
+.depoimento-autor span{font-size:.76rem;color:#888}
+
+/* ========== COMO FUNCIONA ========== */
+#como-funciona{background:var(--creme)}
+.timeline-header{text-align:center;margin-bottom:60px}
+.timeline{
+  max-width:700px;margin:0 auto;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;
+}
+.timeline::before{
+  content:"";position:absolute;left:28px;top:0;bottom:0;
+  width:2px;background:var(--verde-light);z-index:0;
+}
+.timeline-step{
+  display:flex;gap:24px;align-items:flex-start;
+  position:relative;z-index:1;padding-bottom:36px;
+}
+.timeline-step:last-child{padding-bottom:0}
+.step-num{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--verde);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;
+  flex-shrink:0;border:4px solid var(--creme);
+}
+.step-content{padding-top:12px}
+.step-content h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.step-content p{font-size:.88rem;color:#555;line-height:1.65}
+
+/* ========== CTA ========== */
+#cta{background:var(--verde);color:#fff;padding:100px 0}
+.cta-inner{text-align:center}
+.cta-inner h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:700;
+  margin-bottom:16px;color:#fff;
+}
+.cta-inner p{font-size:1rem;opacity:.85;margin-bottom:40px;line-height:1.7}
+.btn-white{
+  background:#fff;color:var(--verde);
+  padding:15px 34px;border-radius:100px;
+  font-weight:700;font-size:1rem;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;display:inline-block;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+
+/* ========== FAQ ========== */
+#faq{background:var(--branco)}
+.faq-header{text-align:center;margin-bottom:56px}
+.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{
+  border:1.5px solid var(--cinza);border-radius:16px;
+  overflow:hidden;transition:border-color .2s;
+}
+.faq-item.open{border-color:var(--verde-light)}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;
+  padding:20px 24px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:600;color:var(--texto);
+}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;background:var(--verde-light);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .3s,background .2s;color:var(--verde);
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--verde);color:#fff}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;
+  font-size:.9rem;color:#555;line-height:1.75;
+  padding:0 24px;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+
+/* ========== FOOTER ========== */
+footer{background:var(--texto);color:#ccc;padding:72px 0 36px}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;
+}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:700;color:#fff;
+}
+.footer-brand-sub{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-top:1px}
+.footer-desc{font-size:.88rem;line-height:1.7;opacity:.7}
+.footer-col h4{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul li{font-size:.85rem;opacity:.75}
+.footer-col ul li a{color:#ccc;text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--verde-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding-top:28px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;font-size:.8rem;opacity:.6;
+}
+
+/* ========== WHATSAPP FLOAT ========== */
+#wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:500;
+  width:60px;height:60px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 32px rgba(37,211,102,.4);
+  text-decoration:none;
+  animation:pulse 2.5s infinite;
+  transition:transform .2s;
+}
+#wa-float:hover{transform:scale(1.1)}
+#wa-float svg{width:30px;height:30px;fill:#fff}
+@keyframes pulse{
+  0%,100%{box-shadow:0 6px 32px rgba(37,211,102,.4)}
+  50%{box-shadow:0 6px 48px rgba(37,211,102,.7)}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <!-- Pose Puxada Alta animada -->
+  <svg id="loader-svg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+    <!-- estrutura: máquina (poste, polia, trilho e pilha de peso), banco, joelheira e corpo sentado -->
+    <path id="loader-path" d="
+      M100 70
+      m -7 0
+      a 7 7 0 1 0 14 0
+      a 7 7 0 1 0 -14 0
+      M100 20
+      m -4 0
+      a 4 4 0 1 0 8 0
+      a 4 4 0 1 0 -8 0
+      M70 16 L130 16
+      M66 16 L66 165
+      M134 16 L134 165
+      M50 168 L150 168
+      M142 35 L142 150
+      M158 35 L158 150
+      M140 130 L160 130 L160 150 L140 150 L140 130
+      M140 135 L160 135
+      M140 140 L160 140
+      M140 145 L160 145
+      M88 150 L112 150 L112 156 L88 156 L88 150
+      M100 150 L100 118
+      M90 118 L110 118
+      M100 78 L100 108
+      M100 108 L94 122
+      M94 122 L94 148
+      M94 148 L84 150
+      M94 148 L102 150
+    " />
+    <!-- pilha de peso que sobe quando a barra desce -->
+    <path id="lp-weight" d="M140 128 L160 128 L160 110 L140 110 L140 128 M140 119 L160 119" />
+    <!-- cabo + barra + braços puxando (animados) -->
+    <path id="lp-arms" d="M100,20 L100,28 M80,28 L120,28 M100,78 L80,28 M100,78 L120,28" />
+  </svg>
+
+  <!-- Nome e subtítulo -->
+  <div class="loader-brand" id="loader-brand">
+    <div class="loader-wordmark">Inspira</div>
+    <div class="loader-sub">Estúdio Personal · Silvânia GO</div>
+  </div>
+
+  <!-- Barra de progresso -->
+  <div class="loader-bar-wrap">
+    <div class="loader-bar" id="loader-bar"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="main-header">
+  <div class="header-inner">
+    <a class="logo-header" href="#hero">
+      <svg class="logo-header-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" stroke="#556B5D" stroke-width="1.5"/>
+        <!-- figura estilizada -->
+        <circle cx="18" cy="10" r="3" fill="#556B5D"/>
+        <path d="M12 18c2-4 4-5 6-5s4 1 6 5" stroke="#556B5D" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M15 18v8M21 18v8" stroke="#556B5D" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 23h14" stroke="#556B5D" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-header-text">
+        <span class="logo-header-name">Inspira</span>
+        <span class="logo-header-sub">Estúdio Personal</span>
+      </div>
+    </a>
+    <nav class="desktop">
+      <a href="#hero">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+      <a class="btn-whatsapp" href="https://wa.me/5562999999999?text=Olá!+Gostaria+de+agendar+uma+avaliação." target="_blank">Agendar pelo WhatsApp</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile" id="mobile-nav">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="#hero" class="mobile-link">Início</a>
+  <a href="#sobre" class="mobile-link">Sobre</a>
+  <a href="#servicos" class="mobile-link">Serviços</a>
+  <a href="#equipe" class="mobile-link">Equipe</a>
+  <a href="#contato" class="mobile-link">Contato</a>
+  <a class="btn-whatsapp" href="https://wa.me/5562999999999?text=Olá!+Gostaria+de+agendar+uma+avaliação." target="_blank">Agendar pelo WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-in">
+      <div class="section-label">Silvânia · GO</div>
+      <h1>Seu corpo dá sinais. Ouça antes que a dor limite a sua vida.</h1>
+      <p>Sentir dores frequentes, perder mobilidade ou deixar de fazer atividades por medo ou insegurança não precisa fazer parte da sua rotina. Com um acompanhamento individualizado, baseado em avaliação e exercícios planejados para você, é possível recuperar a confiança nos movimentos.</p>
+      <p>Cada pessoa chega até nós com uma história diferente. Por isso, cada atendimento é único — aqui, você recebe atenção exclusiva e um plano personalizado.</p>
+      <ul class="hero-benefits">
+        <li>Atendimento individualizado</li>
+        <li>Ambiente acolhedor</li>
+        <li>Métodos baseados em evidências científicas</li>
+        <li>Atendimento presencial em Silvânia · GO</li>
+      </ul>
+      <div class="hero-btns">
+        <a href="https://wa.me/5562999999999?text=Olá!+Gostaria+de+agendar+uma+avaliação." target="_blank" class="btn-primary">Agendar avaliação pelo WhatsApp</a>
+        <a href="#servicos" class="btn-secondary">Conhecer os serviços</a>
+      </div>
+    </div>
+    <div class="hero-image fade-in" style="transition-delay:.2s">
+      <div class="hero-img-wrap">
+        <div class="hero-img-placeholder">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="20" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M24 42c4-8 8-12 16-12s12 4 16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M32 42v28M48 42v28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 52h40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p>Atendimento Individualizado</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-img-wrap fade-in">
+        <div class="sobre-placeholder">
+          <svg width="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="22" r="12" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M20 70c0-11 9-20 20-20s20 9 20 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="sobre-text fade-in" style="transition-delay:.15s">
+        <div class="section-label">Nossa abordagem</div>
+        <h2 class="section-title">Um cuidado que começa entendendo você.</h2>
+        <p class="section-text">Antes de pensar em exercícios ou tratamentos, acreditamos que é preciso entender quem está à nossa frente. Cada paciente possui objetivos, limitações, rotina e necessidades diferentes.</p>
+        <p class="section-text" style="margin-top:16px">Nosso estúdio foi criado para oferecer um ambiente onde você possa cuidar da saúde com tranquilidade, recebendo atenção durante toda a sessão. Seja para aliviar dores, melhorar a postura, fortalecer o corpo ou recuperar a capacidade física — cada atendimento respeita seu ritmo e sua evolução.</p>
+        <div class="sobre-cards">
+          <div class="mini-card fade-in">
+            <div class="mini-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h4>Atendimento Individualizado</h4>
+            <p>Sessões exclusivas com atenção total</p>
+          </div>
+          <div class="mini-card fade-in">
+            <div class="mini-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h4>Base Científica</h4>
+            <p>Métodos validados e atualizados</p>
+          </div>
+          <div class="mini-card fade-in">
+            <div class="mini-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Evolução Acompanhada</h4>
+            <p>Monitoramento constante do seu progresso</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="servicos-header fade-in">
+      <div class="section-label">O que oferecemos</div>
+      <h2 class="section-title">Atendimento especializado para diferentes necessidades.</h2>
+      <p class="section-text">Cada serviço é pensado e adaptado para o seu perfil, com acompanhamento profissional e atenção exclusiva.</p>
+    </div>
+    <div class="servicos-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Reabilitação Cardíaca</h3>
+        <p>Programa de exercícios supervisionados para pessoas que precisam recuperar o condicionamento físico com segurança e melhorar sua qualidade de vida.</p>
+        <ul class="service-benefits">
+          <li>Exercícios individualizados</li>
+          <li>Mais segurança e confiança</li>
+          <li>Acompanhamento especializado</li>
+        </ul>
+        <a href="#contato" class="btn-service">Saiba mais</a>
+      </div>
+      <div class="service-card fade-in" style="transition-delay:.1s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="3"/><path d="M6 22v-4m6 4v-4m6 4v-4M3 14c0-4.4 4-7 9-7s9 2.6 9 7"/></svg>
+        </div>
+        <h3>Pilates Clássico Científico</h3>
+        <p>Fortalecimento, postura, mobilidade e consciência corporal através de exercícios adaptados individualmente para cada paciente.</p>
+        <ul class="service-benefits">
+          <li>Melhor postura e alinhamento</li>
+          <li>Mais flexibilidade</li>
+          <li>Fortalecimento muscular</li>
+        </ul>
+        <a href="#contato" class="btn-service">Saiba mais</a>
+      </div>
+      <div class="service-card fade-in" style="transition-delay:.2s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <h3>Avaliação Postural Computadorizada</h3>
+        <p>Análise detalhada da postura para identificar alterações e desenvolver um plano personalizado de tratamento e prevenção.</p>
+        <ul class="service-benefits">
+          <li>Avaliação precisa e detalhada</li>
+          <li>Planejamento personalizado</li>
+          <li>Acompanhamento da evolução</li>
+        </ul>
+        <a href="#contato" class="btn-service">Saiba mais</a>
+      </div>
+      <div class="service-card fade-in" style="transition-delay:.3s">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </div>
+        <h3>Liberação Miofascial</h3>
+        <p>Técnica para aliviar tensões musculares, melhorar a mobilidade e reduzir desconfortos causados por sobrecarga ou disfunções.</p>
+        <ul class="service-benefits">
+          <li>Relaxamento muscular profundo</li>
+          <li>Mais mobilidade e leveza</li>
+          <li>Redução de tensões</li>
+        </ul>
+        <a href="#contato" class="btn-service">Saiba mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section id="contato">
+  <div class="container">
+    <div class="form-inner">
+      <div class="form-left fade-in">
+        <div class="section-label">Fale conosco</div>
+        <h2 class="section-title">Conte um pouco sobre você.</h2>
+        <p>Nossa equipe responderá pelo WhatsApp em breve. Selecione o serviço de interesse e envie sua mensagem — é rápido e sem compromisso.</p>
+        <div class="checkboxes">
+          <label class="check-item">
+            <input type="checkbox" id="c1" value="Reabilitação Cardíaca">
+            <span class="check-box"></span>
+            <span class="check-label">Reabilitação Cardíaca</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="c2" value="Pilates Clássico Científico">
+            <span class="check-box"></span>
+            <span class="check-label">Pilates Clássico Científico</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="c3" value="Avaliação Postural Computadorizada">
+            <span class="check-box"></span>
+            <span class="check-label">Avaliação Postural Computadorizada</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="c4" value="Liberação Miofascial">
+            <span class="check-box"></span>
+            <span class="check-label">Liberação Miofascial</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-card fade-in" style="transition-delay:.15s">
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" placeholder="(62) 99999-9999">
+        </div>
+        <div class="form-group">
+          <label for="mensagem">O que fez você procurar esse atendimento?</label>
+          <textarea id="mensagem" placeholder="Conte um pouco sobre sua situação..."></textarea>
+        </div>
+        <button class="btn-submit" id="form-submit">Quero falar com um especialista</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="dif-header fade-in">
+      <div class="section-label">Por que nos escolher</div>
+      <h2 class="section-title">Por que escolher o Inspira?</h2>
+      <p class="section-text">Um estúdio construído para quem quer cuidar da saúde de verdade, com qualidade, segurança e atenção personalizada.</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card fade-in">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Atendimento Individualizado</h3>
+        <p>Sessão exclusiva para você, sem divisão de atenção. O profissional está inteiramente dedicado ao seu progresso.</p>
+      </div>
+      <div class="dif-card fade-in" style="transition-delay:.1s">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Avaliação Completa</h3>
+        <p>Antes de tudo, te avaliamos com cuidado. Entendemos sua história e limitações para traçar o melhor plano.</p>
+      </div>
+      <div class="dif-card fade-in" style="transition-delay:.2s">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Exercícios Personalizados</h3>
+        <p>Nada de protocolos genéricos. Cada série de exercícios é criada especificamente para você e seus objetivos.</p>
+      </div>
+      <div class="dif-card fade-in">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Ambiente Exclusivo</h3>
+        <p>Um espaço tranquilo, pensado para o seu bem-estar. Conforto e privacidade em cada sessão.</p>
+      </div>
+      <div class="dif-card fade-in" style="transition-delay:.1s">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Métodos Baseados em Ciência</h3>
+        <p>Trabalhamos com técnicas e protocolos validados cientificamente, com constante atualização profissional.</p>
+      </div>
+      <div class="dif-card fade-in" style="transition-delay:.2s">
+        <div class="dif-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Acompanhamento Humanizado</h3>
+        <p>Ouvimos você, respeitamos seu ritmo e celebramos cada conquista no seu processo de melhora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="container">
+    <div class="equipe-header fade-in">
+      <div class="section-label">Quem cuida de você</div>
+      <h2 class="section-title">Nossa equipe</h2>
+      <p class="section-text">Profissionais qualificados e dedicados ao seu cuidado em cada etapa do processo.</p>
+    </div>
+    <div class="equipe-grid">
+      <div class="equipe-card fade-in">
+        <div class="equipe-avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <h3>Ana Beatriz</h3>
+        <div class="equipe-role">Fisioterapeuta · Pilates</div>
+        <p>Especialista em Pilates Clássico e reabilitação postural, com foco em atendimento individualizado.</p>
+      </div>
+      <div class="equipe-card fade-in" style="transition-delay:.1s">
+        <div class="equipe-avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <h3>Carlos Eduardo</h3>
+        <div class="equipe-role">Educador Físico</div>
+        <p>Responsável pelos programas de reabilitação cardíaca e condicionamento físico seguro.</p>
+      </div>
+      <div class="equipe-card fade-in" style="transition-delay:.2s">
+        <div class="equipe-avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <h3>Mariana Costa</h3>
+        <div class="equipe-role">Fisioterapeuta · Postura</div>
+        <p>Conduz as avaliações posturais computadorizadas e os planos de tratamento personalizados.</p>
+      </div>
+      <div class="equipe-card fade-in" style="transition-delay:.3s">
+        <div class="equipe-avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <h3>Rafael Lima</h3>
+        <div class="equipe-role">Terapeuta · Liberação Miofascial</div>
+        <p>Especialista em liberação miofascial e alívio de tensões musculares e dores crônicas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="depoimentos-header fade-in">
+      <div class="section-label">O que dizem sobre nós</div>
+      <h2 class="section-title">Depoimentos</h2>
+      <p class="section-text">Histórias reais de quem recuperou a confiança no próprio corpo com o Inspira.</p>
+    </div>
+  </div>
+  <div class="marquee-wrap fade-in">
+    <div class="marquee-track" id="marquee-track">
+      <div class="depoimento-card">
+        <div class="depoimento-stars">★★★★★</div>
+        <p>Comecei com muitas dores nas costas e hoje me sinto outra pessoa. O atendimento individual faz toda a diferença.</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">L</div>
+          <div><strong>Luciana Ferreira</strong><span>Pilates Clássico</span></div>
+        </div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-stars">★★★★★</div>
+        <p>Fiz reabilitação cardíaca após uma cirurgia e me senti extremamente segura durante todo o processo.</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">J</div>
+          <div><strong>João Pedro</strong><span>Reabilitação Cardíaca</span></div>
+        </div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-stars">★★★★★</div>
+        <p>A avaliação postural foi super detalhada. Pela primeira vez entendi de verdade a origem da minha dor.</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">M</div>
+          <div><strong>Mariana Souza</strong><span>Avaliação Postural</span></div>
+        </div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-stars">★★★★★</div>
+        <p>Ambiente acolhedor e profissionais muito atenciosos. Recomendo de olhos fechados!</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">R</div>
+          <div><strong>Roberto Alves</strong><span>Liberação Miofascial</span></div>
+        </div>
+      </div>
+      <div class="depoimento-card">
+        <div class="depoimento-stars">★★★★★</div>
+        <p>Nunca tinha feito Pilates antes e fui muito bem acolhida. Hoje não vivo sem minhas sessões semanais.</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">C</div>
+          <div><strong>Camila Rocha</strong><span>Pilates Clássico</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="timeline-header fade-in">
+      <div class="section-label">Passo a passo</div>
+      <h2 class="section-title">Como funciona?</h2>
+      <p class="section-text" style="margin:0 auto">Do primeiro contato ao acompanhamento contínuo — tudo pensado para ser simples e acolhedor.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-step fade-in">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Contato pelo WhatsApp</h4>
+          <p>Você nos envia uma mensagem contando um pouco sobre o que está sentindo ou o que busca. É rápido e sem compromisso.</p>
+        </div>
+      </div>
+      <div class="timeline-step fade-in">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Agendamento</h4>
+          <p>Juntos escolhemos o melhor horário para a sua avaliação presencial no estúdio em Silvânia.</p>
+        </div>
+      </div>
+      <div class="timeline-step fade-in">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Avaliação</h4>
+          <p>Realizamos uma avaliação completa — postura, histórico, objetivos e limitações — para entender sua necessidade com profundidade.</p>
+        </div>
+      </div>
+      <div class="timeline-step fade-in">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Plano Personalizado</h4>
+          <p>Criamos um programa de exercícios e acompanhamento 100% voltado para você, seu corpo e seus objetivos.</p>
+        </div>
+      </div>
+      <div class="timeline-step fade-in">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Início do Acompanhamento</h4>
+          <p>As sessões começam com suporte contínuo, reavaliações periódicas e evolução monitorada passo a passo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <h2>Vamos dar o primeiro passo?</h2>
+      <p>Quanto antes entendermos sua necessidade, mais cedo poderemos orientar o atendimento ideal para você.</p>
+      <a href="https://wa.me/5562999999999?text=Olá!+Gostaria+de+agendar+minha+avaliação+no+Inspira+Estúdio." target="_blank" class="btn-white">Agendar minha avaliação</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header fade-in">
+      <div class="section-label">Dúvidas frequentes</div>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          Nunca fiz Pilates. Posso começar?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">Sim! Não é necessária nenhuma experiência anterior. Nosso método começa com uma avaliação completa e os exercícios são adaptados ao seu nível, condição física e objetivos. Iniciantes são muito bem-vindos.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          O atendimento é individual?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">Sim, todos os nossos atendimentos são individuais. Durante a sessão, você recebe a atenção exclusiva do profissional, sem dividir o espaço ou o tempo com outros pacientes.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          Preciso passar por avaliação?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">Sim, a avaliação é o ponto de partida de tudo. É nela que identificamos suas necessidades, limitações e objetivos para criar um plano verdadeiramente personalizado para você.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          Quem pode fazer reabilitação cardíaca?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">Pessoas que passaram por cirurgias cardíacas, infarto, insuficiência cardíaca ou outras condições cardiovasculares. O programa é supervisionado e adaptado conforme a liberação médica e a condição de cada paciente.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          Posso fazer mais de um tratamento?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">Sim. Muitas vezes a combinação de serviços potencializa os resultados. Após a avaliação, o profissional pode indicar a melhor combinação de abordagens para o seu caso.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-q">
+          Como faço para agendar?
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </button>
+        <div class="faq-a">É simples! Basta clicar no botão "Agendar pelo WhatsApp" em qualquer parte do site. Você será redirecionado para uma conversa onde poderemos entender melhor sua necessidade e marcar a avaliação.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="17" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+            <circle cx="18" cy="10" r="3" fill="rgba(255,255,255,.8)"/>
+            <path d="M12 18c2-4 4-5 6-5s4 1 6 5" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M15 18v8M21 18v8" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M11 23h14" stroke="rgba(255,255,255,.8)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="footer-brand-name">Inspira</div>
+            <div class="footer-brand-sub">Estúdio Personal</div>
+          </div>
+        </div>
+        <p class="footer-desc">Estúdio de saúde física com atendimento presencial e individualizado em Silvânia · GO. Pilates, reabilitação e bem-estar com base científica.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>📍 Silvânia · GO</li>
+          <li>📞 <a href="tel:5562999999999">(62) 99999-9999</a></li>
+          <li>💬 <a href="https://wa.me/5562999999999" target="_blank">WhatsApp</a></li>
+          <li>📸 <a href="#" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Inspira Estúdio Personal. Todos os direitos reservados.</span>
+      <span>Silvânia · GO</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a id="wa-float" href="https://wa.me/5562999999999?text=Olá!+Gostaria+de+saber+mais+sobre+os+atendimentos." target="_blank" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ===== LOADER =====
+(function() {
+  var loader = document.getElementById('loader');
+  var brand  = document.getElementById('loader-brand');
+  var bar    = document.getElementById('loader-bar');
+
+  // Inicia a barra de progresso
+  requestAnimationFrame(function() {
+    bar.style.width = '100%';
+  });
+
+  // Mostra o nome enquanto a puxada acontece
+  setTimeout(function() {
+    brand.classList.add('show');
+  }, 1300);
+
+  // Esconde o loader após a puxada (descida + subida) terminar
+  setTimeout(function() {
+    loader.classList.add('fade-out');
+    setTimeout(function() {
+      loader.style.display = 'none';
+      initObserver();
+    }, 750);
+  }, 2900);
+
+  // Fallback: se a página já carregou, inicia o observer mesmo assim
+  window.addEventListener('load', function() {
+    // observer será chamado pelo loader timeout; apenas garante se o loader já sumiu
+  });
+})();
+
+// ===== HEADER SCROLL =====
+var header = document.getElementById('main-header');
+window.addEventListener('scroll', function() {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ===== MOBILE MENU =====
+var hamburger  = document.getElementById('hamburger');
+var mobileNav  = document.getElementById('mobile-nav');
+var mobileClose = document.getElementById('mobile-close');
+
+hamburger.addEventListener('click', function() { mobileNav.classList.add('open'); });
+mobileClose.addEventListener('click', function() { mobileNav.classList.remove('open'); });
+document.querySelectorAll('.mobile-link').forEach(function(l) {
+  l.addEventListener('click', function() { mobileNav.classList.remove('open'); });
+});
+
+// ===== MARQUEE DUPLICATE (loop infinito) =====
+(function() {
+  var track = document.getElementById('marquee-track');
+  if (track) { track.innerHTML += track.innerHTML; }
+})();
+
+// ===== FADE-IN OBSERVER =====
+function initObserver() {
+  var els = document.querySelectorAll('.fade-in');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el) { obs.observe(el); });
+}
+
+// ===== FAQ ACCORDION =====
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item   = btn.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ===== FORM → WHATSAPP =====
+document.getElementById('form-submit').addEventListener('click', function() {
+  var nome   = document.getElementById('nome').value.trim();
+  var tel    = document.getElementById('telefone').value.trim();
+  var msg    = document.getElementById('mensagem').value.trim();
+  var checks = Array.from(document.querySelectorAll('.check-item input:checked')).map(function(c) { return c.value; });
+
+  if (!nome) { alert('Por favor, informe seu nome.'); return; }
+
+  var servicos = checks.length ? checks.join(', ') : 'Não especificado';
+  var texto = 'Olá!%0A%0AMeu nome é ' + encodeURIComponent(nome) +
+              '.%0ATenho interesse em: ' + encodeURIComponent(servicos) +
+              '.%0ATelefone: ' + encodeURIComponent(tel || 'Não informado') +
+              '.%0AMotivo: ' + encodeURIComponent(msg || 'Não especificado') +
+              '.%0A%0AGostaria de agendar uma avaliação.';
+
+  window.open('https://wa.me/5562999999999?text=' + texto, '_blank');
+});
+</script>
+</body>
+</html>
