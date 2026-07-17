@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspira Estúdio Personal — Treino personalizado e cuidado com saúde em Silvânia</title>
+<meta name="description" content="Estúdio de treinamento personalizado em Silvânia, GO. Turmas de até 6 alunos com 3 profissionais, avaliação individual, recuperação corporal e brinquedoteca. Saúde antes de estética.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --bg:#f5f1ea;
+    --bg-warm:#efe8db;
+    --card:#fbf8f2;
+    --ink:#2b2b26;
+    --ink-soft:#5b5749;
+    --olive:#3f5a2a;
+    --olive-deep:#2e4320;
+    --olive-soft:#6f8a54;
+    --olive-mist:#dbe4cd;
+    --line:#e2dccc;
+    --gold:#c9a86a;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow:0 20px 50px -25px rgba(43,43,38,0.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  [class^="ti-"],[class*=" ti-"]{line-height:1;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.12;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--olive-deep);
+    background:var(--olive-mist);padding:8px 16px;border-radius:100px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--olive);flex:none;
+    animation:breathe 3.6s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.75;}50%{transform:scale(1.9);opacity:1;}}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:15px 30px;border-radius:100px;font-weight:600;font-size:15px;
+    border:1px solid transparent;cursor:pointer;transition:.25s ease;white-space:nowrap;
+  }
+  .btn-primary{background:var(--olive);color:#fbf8f2;}
+  .btn-primary:hover{background:var(--olive-deep);transform:translateY(-2px);}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--bg);}
+  .btn-ghost{background:var(--card);color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--olive);}
+  section{padding:104px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:14px;}
+  .section-head p{color:var(--ink-soft);font-size:17px;margin-top:16px;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* HEADER */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(245,241,234,0.86);backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;transition:.3s;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1180px;margin:0 auto;}
+  .logo{font-family:'Fraunces',serif;font-size:22px;font-weight:500;display:flex;flex-direction:column;line-height:1;}
+  .logo span{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.24em;color:var(--olive);margin-top:5px;}
+  .nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:500;}
+  .nav-links a{opacity:.85;transition:.2s;position:relative;}
+  .nav-links a:hover{opacity:1;color:var(--olive-deep);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+  .burger span{width:24px;height:2px;background:var(--ink);}
+  .mobile-menu{display:none;position:fixed;top:66px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:20px 24px 28px;flex-direction:column;gap:16px;z-index:99;}
+  .mobile-menu.open{display:flex;}
+
+  /* HERO */
+  .hero{padding:172px 0 90px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,54px);margin:22px 0 20px;}
+  .hero h1 .b{color:var(--ink);display:block;}
+  .hero h1 .g{color:var(--olive);display:block;}
+  .hero p.sub{font-size:17.5px;color:var(--ink-soft);max-width:520px;margin-bottom:26px;}
+  .hero-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:28px;max-width:460px;}
+  .hero-list li{list-style:none;font-size:14.5px;color:var(--ink-soft);display:flex;align-items:center;gap:9px;}
+  .hero-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--olive);flex:none;}
+  .hero-method{display:flex;align-items:center;gap:14px;margin-top:26px;}
+  .hero-method .avatars{display:flex;}
+  .hero-method .avatars span{width:34px;height:34px;border-radius:50%;border:2px solid var(--bg);margin-left:-10px;}
+  .hero-method .avatars span:first-child{margin-left:0;background:var(--olive-soft);}
+  .hero-method .avatars span:nth-child(2){background:var(--olive-deep);}
+  .hero-method .avatars span:nth-child(3){background:var(--gold);}
+  .hero-method p{font-size:13.5px;color:var(--ink-soft);}
+  .badge-toy{
+    display:inline-flex;align-items:center;gap:10px;background:var(--olive);color:#fff;
+    padding:12px 20px;border-radius:100px;font-weight:600;font-size:14.5px;margin-bottom:26px;
+    box-shadow:var(--shadow);
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-photo{
+    aspect-ratio:4/5;border-radius:var(--radius-lg);
+    background:
+      radial-gradient(circle at 25% 20%, rgba(255,255,255,.18), transparent 45%),
+      linear-gradient(160deg,#5a7042 0%, #3f5a2a 45%, #2e4320 100%);
+    position:relative;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .hero-photo::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+    background-size:22px 22px;opacity:.4;
+  }
+  .hero-photo .glyph{position:absolute;bottom:36px;left:36px;color:#fbf8f2;}
+  .hero-photo .glyph .n{font-family:'Fraunces',serif;font-size:52px;font-weight:400;}
+  .hero-photo .glyph .l{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.85;}
+  .float-card{
+    position:absolute;background:var(--card);border-radius:var(--radius-md);
+    padding:18px 20px;box-shadow:var(--shadow);border:1px solid var(--line);
+  }
+  .float-card.c1{top:-24px;right:-18px;}
+  .float-card.c2{bottom:-22px;left:-24px;}
+  .float-card.only-right{top:32px;right:-18px;left:auto;bottom:auto;}
+  .float-card b{font-family:'Fraunces',serif;font-size:26px;display:block;color:var(--olive-deep);}
+  .float-card small{font-size:12px;color:var(--ink-soft);}
+
+  /* PLANO PARA VOCE - grid cards */
+  .grid-8{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .plan-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:26px 22px 22px;transition:.3s;position:relative;overflow:hidden;
+  }
+  .plan-card:hover{border-color:var(--olive-soft);transform:translateY(-4px);box-shadow:var(--shadow);}
+  .plan-card::after{
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:4px;
+    background:var(--olive-deep);transform:scaleX(0);transform-origin:left;
+    transition:transform .35s ease;
+  }
+  .plan-card:hover::after,.plan-card.in-view::after{transform:scaleX(1);}
+  .plan-card .ic{font-size:26px;margin-bottom:14px;display:block;}
+  .plan-card h3{font-size:17px;margin-bottom:6px;}
+  .plan-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* PARA QUEM E */
+  .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .fit-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:38px 34px;}
+  .fit-col.yes{border-color:var(--olive-soft);background:linear-gradient(180deg,#fbf8f2,#f2f3ea);}
+  .fit-col h3{font-size:21px;margin-bottom:20px;}
+  .fit-col ul{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .fit-col li{display:flex;gap:12px;font-size:15px;color:var(--ink-soft);align-items:flex-start;}
+  .fit-col.yes li b{color:var(--olive-deep);}
+  .mark{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px;}
+  .mark.yes{background:var(--olive);color:#fff;}
+  .mark.no{background:#e7e0d2;color:var(--ink-soft);}
+
+  /* O QUE E O INSPIRA - stats */
+  .inspira-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .inspira-grid h2{font-size:clamp(28px,3.4vw,38px);margin-top:14px;}
+  .inspira-grid > div:first-child p{color:var(--ink-soft);font-size:16px;margin-top:14px;max-width:460px;}
+  .stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px;max-width:400px;}
+  .stat{border-top:2px solid var(--olive);padding-top:16px;}
+  .stat b{font-family:'Fraunces',serif;font-size:36px;color:var(--olive-deep);display:block;}
+  .stat span{font-size:12.5px;color:var(--ink-soft);}
+  .mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:130px 130px;gap:14px;}
+  .mosaic .m{border-radius:var(--radius-md);background:linear-gradient(150deg,var(--olive-mist),var(--card));border:1px solid var(--line);}
+  .mosaic .m1{grid-row:1/3;background:linear-gradient(160deg,#6f8a54,#3f5a2a);}
+  .mosaic .m2{grid-column:2/3;}
+
+  /* TIMELINE - dia no inspira */
+  .day-line{position:relative;margin-top:20px;}
+  .day-track{display:flex;gap:0;overflow-x:auto;padding-bottom:14px;scrollbar-width:none;}
+  .day-track::-webkit-scrollbar{display:none;}
+  .day-step{flex:0 0 200px;padding:0 18px 0 0;position:relative;}
+  .day-step .top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .day-step .num{width:36px;height:36px;border-radius:50%;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex:none;}
+  .day-step .line{flex:1;height:2px;background:var(--line);}
+  .day-step:last-child .line{display:none;}
+  .day-step h4{font-size:15.5px;margin-bottom:6px;}
+  .day-step p{font-size:13px;color:var(--ink-soft);}
+
+  /* JORNADA */
+  .journey{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:44px;}
+  .journey .j{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);padding:22px 18px;position:relative;}
+  .journey .j:nth-child(1){transition-delay:0s;}
+  .journey .j:nth-child(2){transition-delay:.12s;}
+  .journey .j:nth-child(3){transition-delay:.24s;}
+  .journey .j:nth-child(4){transition-delay:.36s;}
+  .journey .j:nth-child(5){transition-delay:.48s;}
+  .journey .j:nth-child(6){transition-delay:.6s;}
+  .journey .j .n{font-family:'Fraunces',serif;font-size:14px;color:var(--olive);}
+  .journey .j h4{font-size:14.5px;margin:10px 0 6px;}
+  .journey .j p{font-size:12.5px;color:var(--ink-soft);}
+
+  /* TUDO EM UM SO LUGAR */
+  .check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 32px;margin-top:12px;}
+  .check-grid .ci{display:flex;align-items:center;gap:12px;font-size:15.5px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .check-grid .ci .m{width:24px;height:24px;border-radius:50%;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none;}
+
+  /* BRINQUEDOTECA */
+  /* DIFERENCIAIS */
+  .diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:12px;}
+  .diff-card{background:var(--card);border:1px solid transparent;border-radius:var(--radius-md);padding:28px;transition:transform .3s ease,border-color .3s ease;}
+  .diff-card:hover{border-color:var(--olive-deep);transform:scale(1.04);z-index:1;}
+  .diff-card .ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;color:#000;background:var(--bg-warm);transition:.3s ease;}
+  .diff-card:hover .ic{background:var(--olive);color:#fff;}
+  @media(max-width:980px){
+    .diff-card.in-view{border-color:var(--olive-deep);transform:scale(1.04);z-index:1;}
+    .diff-card.in-view .ic{background:var(--olive);color:#fff;}
+  }
+  .diff-card h4{font-size:16px;margin-bottom:6px;}
+  .diff-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* COMPARACAO */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px;}
+  .compare .col{padding:38px 34px;border-radius:var(--radius-lg);}
+  .compare .col.trad{background:#fff;border:1px solid var(--line);}
+  .compare .col.insp{background:var(--olive-deep);color:#fbf8f2;}
+  .compare h3{font-size:19px;margin-bottom:20px;}
+  .compare .col.insp h3{color:#fbf8f2;}
+  .compare ul{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .compare li{font-size:14.5px;display:flex;gap:10px;}
+  .compare .col.trad li{color:var(--ink-soft);}
+  .compare .col.insp li{color:#e4e6da;}
+
+  /* RECUPERACAO */
+  .rec-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;}
+  .rec-photo{aspect-ratio:3/4;border-radius:var(--radius-lg);background:linear-gradient(155deg,#c9a678,#8a6f4e 55%,#4a3a28);position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .rec-photo .decor-ic{position:absolute;bottom:14px;left:14px;font-size:130px;opacity:.3;color:#fff;}
+  .rec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:6px;}
+  .rec-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);padding:22px;display:flex;gap:14px;align-items:flex-start;}
+  .rec-card .ric{flex:none;width:40px;height:40px;border-radius:50%;background:var(--olive-mist);color:var(--olive-deep);display:flex;align-items:center;justify-content:center;font-size:19px;}
+  .rec-card h4{font-size:15.5px;margin-bottom:6px;}
+  .rec-card p{font-size:13px;color:var(--ink-soft);}
+  .soon-strip{margin-top:26px;display:flex;align-items:center;gap:14px;background:var(--olive-mist);border-radius:var(--radius-md);padding:20px 26px;font-size:14.5px;color:var(--olive-deep);font-weight:500;}
+
+  /* DESACELERAR */
+  .calm{text-align:center;}
+  .calm .breath{width:90px;height:90px;border-radius:50%;border:1.5px solid var(--olive);margin:0 auto 30px;position:relative;}
+  .calm .breath::before{content:"";position:absolute;inset:14px;border-radius:50%;background:var(--olive);opacity:.35;animation:breathe-big 5s ease-in-out infinite;}
+  @keyframes breathe-big{0%,100%{transform:scale(.7);opacity:.2;}50%{transform:scale(1.15);opacity:.55;}}
+  .tag-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px;}
+  .tag-row span{font-size:13px;border:1px solid var(--line);padding:9px 18px;border-radius:100px;color:var(--ink-soft);}
+
+  /* COMUNIDADE */
+  .community-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;}
+  .community-grid .g{aspect-ratio:1;border-radius:var(--radius-md);background:linear-gradient(145deg,var(--olive-mist),#cdd8b8);}
+  .community-grid .g:nth-child(2){background:linear-gradient(145deg,#e8dfc8,#c9a86a);}
+  .community-grid .g:nth-child(3){background:linear-gradient(145deg,#5a7042,#3f5a2a);}
+  .community-grid .g:nth-child(4){background:linear-gradient(145deg,#efe8db,#d8cfb6);}
+
+  /* EQUIPE */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:12px;}
+  .team-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;}
+  .team-photo{aspect-ratio:4/5;background:linear-gradient(150deg,#8a9a5a,#3f5a2a);}
+  .team-body{padding:24px 22px;}
+  .team-body h4{font-size:18px;margin-bottom:2px;}
+  .team-body .role{font-size:12.5px;color:var(--olive-deep);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .team-body p{font-size:14px;color:var(--ink-soft);font-style:italic;}
+
+  /* EVOLUCAO */
+  .evo-track{display:flex;gap:0;margin-top:40px;position:relative;}
+  .evo-track::before{content:"";position:absolute;top:9px;left:0;right:0;height:2px;background:var(--line);}
+  .evo-step{flex:1;text-align:center;position:relative;}
+  .evo-step .p{width:18px;height:18px;border-radius:50%;background:var(--olive);margin:0 auto 16px;position:relative;z-index:2;border:4px solid var(--bg);}
+  .evo-step p{font-size:12.5px;color:var(--ink-soft);padding:0 6px;}
+
+  /* DEPOIMENTOS */
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:12px;}
+  .test-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;}
+  .test-video{aspect-ratio:9/11;background:linear-gradient(160deg,#5a7042,#2e4320);position:relative;display:flex;align-items:center;justify-content:center;}
+  .play-btn{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--olive-deep);}
+  .test-body{padding:18px 20px;}
+  .test-body p{font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;}
+  .test-body b{font-size:13.5px;}
+
+  /* GALERIA */
+  .gal-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;}
+  .gal-filters span{font-size:12.5px;border:1px solid var(--line);padding:8px 16px;border-radius:100px;color:var(--ink-soft);}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:140px;gap:14px;}
+  .gal-grid .ph{border-radius:var(--radius-sm);background:linear-gradient(150deg,var(--olive-mist),var(--card));border:1px solid var(--line);}
+  .gal-grid .ph:nth-child(3n+1){background:linear-gradient(150deg,#6f8a54,#3f5a2a);}
+  .gal-grid .ph:nth-child(5n+2){grid-row:span 2;background:linear-gradient(150deg,#e8dfc8,#c9a86a);}
+
+  /* PLANOS */
+  .plans-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:50px;text-align:center;max-width:640px;margin:0 auto;}
+  .plans-box ul{list-style:none;display:inline-flex;flex-direction:column;gap:14px;text-align:left;margin:24px 0 32px;}
+  .plans-box li{font-size:15.5px;display:flex;gap:10px;align-items:center;}
+  .plans-box .cta-center{display:flex;justify-content:center;}
+  @media(max-width:480px){
+    .plans-box{padding:40px 22px;}
+  }
+
+  /* EVENTOS */
+  .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px;}
+  .event-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--line);}
+  .event-photo{aspect-ratio:16/10;background:linear-gradient(150deg,#c9a86a,#8a9a5a);}
+  .event-card .eb{padding:16px 18px;background:var(--card);}
+  .event-card h4{font-size:15px;}
+
+  /* PARCEIROS */
+  .partner-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;}
+  .partner-row .p{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);padding:26px;text-align:center;font-weight:600;font-size:14.5px;}
+
+  /* EM BREVE */
+  .soon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;}
+  .soon-grid .s{border:1.5px dashed var(--olive-soft);border-radius:var(--radius-md);padding:28px 20px;text-align:center;}
+  .soon-grid .s span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);font-weight:700;}
+  .soon-grid .s h4{font-size:16px;margin-top:10px;}
+
+  /* LOJINHA */
+  .shop-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch;}
+  .shop-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+  .shop-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);padding:22px;}
+  .shop-item .ic{width:38px;height:38px;border-radius:50%;background:var(--olive-mist);color:var(--olive-deep);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px;}
+  .shop-item h4{font-size:15px;margin-bottom:5px;}
+  .shop-item p{font-size:12.5px;color:var(--ink-soft);}
+  .bath-card{background:linear-gradient(155deg,#57703c,#2e4320);border-radius:var(--radius-lg);padding:44px;color:#fbf8f2;display:flex;flex-direction:column;justify-content:center;}
+  .bath-ic{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:26px;}
+  .bath-card h3{font-size:clamp(22px,2.4vw,27px);margin-bottom:16px;color:#fbf8f2;line-height:1.2;}
+  .bath-card p{font-size:14.5px;color:#e4e6da;margin-bottom:24px;}
+  .bath-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .bath-list span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:9px 16px;border-radius:100px;color:#fbf8f2;}
+
+  /* EMPRESAS */
+  .biz{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .biz-list{list-style:none;display:flex;flex-direction:column;gap:16px;margin:22px 0 28px;}
+  .biz-list li{font-size:15px;display:flex;gap:12px;color:var(--ink-soft);}
+  .biz-visual{aspect-ratio:4/3;border-radius:var(--radius-lg);background:linear-gradient(150deg,#3f5a2a,#2e4320);position:relative;}
+  .biz-visual .decor-ic{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:90px;opacity:.5;color:#fff;}
+
+  /* INSTAGRAM */
+  .insta-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .insta-embed-wrap{display:flex;justify-content:center;}
+  .insta-embed-wrap iframe{max-width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow);background:var(--card);}
+
+  /* LOCALIZACAO */
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .loc-map{aspect-ratio:4/3;border-radius:var(--radius-lg);background:linear-gradient(150deg,#e9e3d3,#c9c2ac);position:relative;overflow:hidden;border:1px solid var(--line);}
+  .loc-map .decor-ic{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:78px;color:var(--olive-deep);}
+  .loc-info p{font-size:15px;color:var(--ink-soft);margin-bottom:10px;}
+  .loc-info .hours{margin:20px 0 26px;font-size:14.5px;}
+  .loc-info .hours div{display:flex;justify-content:space-between;max-width:280px;padding:8px 0;border-bottom:1px solid var(--line);}
+
+  /* FAQ */
+  .faq-list{display:flex;flex-direction:column;gap:0;}
+  .faq-item{border-bottom:1px solid var(--line);padding:22px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-size:16.5px;font-weight:500;gap:20px;}
+  .faq-q .plus{font-size:20px;color:var(--olive);transition:.25s;flex:none;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-a p{font-size:14.5px;color:var(--ink-soft);padding-top:14px;max-width:640px;}
+  .faq-item.highlight .faq-q{color:var(--olive-deep);}
+
+  /* CTA FINAL */
+  .final-cta{background:var(--olive-deep);border-radius:var(--radius-lg);margin:0 24px;padding:80px 60px;text-align:center;color:#fbf8f2;}
+  .final-cta .pill{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 18px;border-radius:100px;font-size:12.5px;font-weight:600;margin-bottom:20px;}
+  .final-cta h2{color:#fbf8f2;font-size:clamp(28px,4vw,42px);margin-bottom:16px;}
+  .final-cta p{color:#e4e6da;margin-bottom:32px;}
+  .final-cta .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .final-cta .btn-primary{background:#fbf8f2;color:var(--olive-deep);}
+  .final-cta .btn-outline{border-color:rgba(255,255,255,.5);color:#fbf8f2;}
+  .final-cta .btn-outline:hover{background:rgba(255,255,255,.12);}
+
+  /* FOOTER */
+  footer{padding:70px 0 34px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .foot-grid h5{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px;}
+  .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+
+  @media(max-width:980px){
+    .hero-grid,.fit-grid,.biz,.loc-grid,.rec-layout,.inspira-grid,.shop-layout,.insta-layout{grid-template-columns:1fr;}
+    .grid-8{grid-template-columns:repeat(2,1fr);}
+    .journey{grid-template-columns:repeat(3,1fr);}
+    .diff-grid,.rec-grid,.community-grid,.team-grid,.test-grid,.gal-grid,.events-grid,.partner-row,.soon-grid,.shop-grid{grid-template-columns:repeat(2,1fr);}
+    .compare{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .burger{display:flex;}
+  }
+  /* Carousel arrows: static row below the track, shown only on mobile */
+  .carousel-wrap{position:relative;}
+  .car-nav{display:none;align-items:center;justify-content:center;gap:18px;margin-top:20px;}
+  .car-arrow{
+    display:flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:50%;background:var(--card);
+    border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;
+    color:var(--ink);font-size:17px;flex:none;transition:.2s ease;
+  }
+  .car-arrow:hover{border-color:var(--olive);color:var(--olive-deep);}
+  .car-arrow:active{transform:scale(0.94);}
+
+  @media(max-width:640px){
+    section{padding:70px 0;}
+    .grid-8,.stat-row,.journey,.rec-grid,.community-grid,.gal-grid,.soon-grid,.shop-grid{grid-template-columns:1fr 1fr;}
+    .check-grid{grid-template-columns:1fr;}
+    .final-cta{margin:0 12px;padding:44px 24px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .evo-track{flex-wrap:wrap;}
+    .evo-track::before{display:none;}
+    .evo-step{flex:0 0 33%;margin-bottom:20px;}
+
+    /* Como é um dia: stack vertically */
+    .day-track{flex-direction:column;overflow-x:visible;gap:0;}
+    .day-step{flex:none;width:100%;padding:0 0 24px 0;}
+    .day-step .line{display:none;}
+
+    /* Diferenciais: cards empilhados, um abaixo do outro */
+    .diff-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+
+    /* Equipe, Depoimentos: one card at a time, swipeable, with arrows below */
+    .team-grid,.test-grid{display:flex;grid-template-columns:unset;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .team-grid::-webkit-scrollbar,.test-grid::-webkit-scrollbar{display:none;}
+    .team-card,.test-card{flex:0 0 100%;scroll-snap-align:center;}
+
+    /* Recuperação: centered content */
+    .rec-layout > div:last-child{text-align:center;}
+    .rec-card{flex-direction:column;align-items:center;text-align:center;}
+    .soon-strip{flex-direction:column;text-align:center;margin-left:auto;margin-right:auto;}
+
+    .car-nav{display:flex;}
+  }
+
+  /* Galeria: selectable filters */
+  .gal-filters span{cursor:pointer;transition:.2s ease;}
+  .gal-filters span:hover{border-color:var(--olive-soft);color:var(--ink);}
+  .gal-filters span.active{background:var(--olive);color:#fff;border-color:var(--olive);}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="nav">
+    <div class="logo">Inspira<span>ESTÚDIO PERSONAL</span></div>
+    <div class="nav-links">
+      <a href="#inspira">O Inspira</a>
+      <a href="#para-quem">Para quem é</a>
+      <a href="#jornada">Jornada</a>
+      <a href="#recuperacao">Recuperação</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" style="padding:12px 22px;font-size:14px;" href="https://wa.me/5562981466229?text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Inspira%20Est%C3%BAdio%20Personal." target="_blank" rel="noopener">Agendar visita</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inspira">O Inspira</a>
+    <a href="#para-quem">Para quem é</a>
+    <a href="#jornada">Jornada</a>
+    <a href="#recuperacao">Recuperação</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Estúdio Personal · Silvânia — GO</span>
+      <h1><span class="b">Você não está entrando em uma academia.</span><span class="g">Está entrando em um espaço pensado para cuidar de você.</span></h1>
+      <p class="sub">Você não vem ao Inspira apenas para treinar. Você vem para cuidar da sua saúde, aliviar as tensões do dia a dia e viver um momento dedicado exclusivamente a você.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://wa.me/5562981466229?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Inspira." target="_blank" rel="noopener">Agendar avaliação</a>
+        <a class="btn btn-outline" href="#inspira">Conheça o estúdio</a>
+      </div>
+      <div class="hero-method">
+        <div class="avatars"><span></span><span></span><span></span></div>
+        <p>Método aplicado por <b>3 profissionais</b> em cada aula.</p>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-photo">
+        <div class="glyph"><span class="n">Inspira</span><br><span class="l">Estúdio Personal · Silvânia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANO PARA VOCE -->
+<section id="plano">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para cada fase da vida</span>
+      <h2>Aqui existe um plano para você.</h2>
+      <p>O Inspira atende objetivos e fases de vida diferentes — sem fórmula única, sem pressa, com acompanhamento próximo em cada etapa.</p>
+    </div>
+    <div class="grid-8 reveal">
+      <div class="plan-card"><span class="ic"><i class="ti ti-barbell"></i></span><h3>Emagrecimento</h3><p>Treino e acompanhamento pensados para resultados sustentáveis.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-trending-up"></i></span><h3>Ganho de massa</h3><p>Progressão de carga segura, orientada por profissionais.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-first-aid-kit"></i></span><h3>Reabilitação</h3><p>Retorno gradual ao movimento após lesões ou cirurgias.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-yoga"></i></span><h3>Qualidade de vida</h3><p>Mais disposição para o seu dia a dia, sem exageros.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-heart"></i></span><h3>Saúde</h3><p>Cuidado contínuo, além da estética.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-infinity"></i></span><h3>Longevidade</h3><p>Fortalecimento e equilíbrio para envelhecer melhor.</p></div>
+      <div class="plan-card"><span class="ic"><i class="ti ti-baby-carriage"></i></span><h3>Pós-parto</h3><p>Retorno respeitando o tempo do corpo da mãe.</p></div>
+      <div class="plan-card" style="text-align:center;"><span class="ic"><i class="ti ti-run"></i></span><h3>Condicionamento físico</h3><p>Preparo físico geral, com técnica e segurança.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM E -->
+<section id="para-quem" style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Isso é para você?</span>
+      <h2>Para quem é — e para quem não é.</h2>
+    </div>
+    <div class="fit-grid reveal">
+      <div class="fit-col yes">
+        <h3>Este espaço é ideal para você que:</h3>
+        <ul>
+          <li><span class="mark yes"><i class="ti ti-check"></i></span> procura atendimento personalizado</li>
+          <li><span class="mark yes"><i class="ti ti-check"></i></span> não gosta de academias lotadas</li>
+          <li><span class="mark yes"><i class="ti ti-check"></i></span> quer ser acompanhado de perto</li>
+          <li><span class="mark yes"><i class="ti ti-check"></i></span> quer treinar com segurança</li>
+          <li><span class="mark yes"><i class="ti ti-check"></i></span> quer cuidar da saúde e do bem-estar</li>
+        </ul>
+      </div>
+      <div class="fit-col">
+        <h3>Não é indicado para quem:</h3>
+        <ul>
+          <li><span class="mark no">–</span> busca apenas musculação convencional, sem acompanhamento próximo</li>
+          <li><span class="mark no">–</span> prefere turmas grandes e ambiente agitado</li>
+          <li><span class="mark no">–</span> quer resultado rápido sem constância nem avaliação</li>
+          <li><span class="mark no">–</span> não se importa com orientação individual</li>
+          <li><span class="mark no">–</span> não busca um cuidado por completo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE E O INSPIRA -->
+<section id="inspira">
+  <div class="wrap">
+    <div class="inspira-grid reveal">
+      <div>
+        <span class="eyebrow">O Inspira</span>
+        <h2>Muito mais do que uma academia.</h2>
+        <p>Um estúdio boutique, pensado para atendimento próximo, recuperação corporal e um momento que é só seu.</p>
+        <div class="stat-row">
+          <div class="stat"><b>6</b><span>alunos por aula</span></div>
+          <div class="stat"><b>3</b><span>profissionais em sala</span></div>
+          <div class="stat"><b>100%</b><span>avaliação individual</span></div>
+          <div class="stat"><b>0</b><span>filas ou aparelhos disputados</span></div>
+        </div>
+      </div>
+      <div class="mosaic">
+        <div class="m m1"></div>
+        <div class="m m2"></div>
+        <div class="m"></div>
+        <div class="m"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO E UM DIA NO INSPIRA -->
+<section style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">A experiência</span>
+      <h2>Como é um dia no Inspira.</h2>
+    </div>
+    <div class="day-line reveal">
+      <div class="day-track">
+        <div class="day-step"><div class="top"><div class="num">1</div><div class="line"></div></div><h4>Chegada</h4><p>Ambiente calmo, sem pressa desde a porta.</p></div>
+        <div class="day-step"><div class="top"><div class="num">2</div><div class="line"></div></div><h4>Recepção</h4><p>Você é recebido pelo nome, com atenção genuína.</p></div>
+        <div class="day-step"><div class="top"><div class="num">3</div><div class="line"></div></div><h4>Avaliação</h4><p>Entendemos seu momento antes de qualquer treino.</p></div>
+        <div class="day-step"><div class="top"><div class="num">4</div><div class="line"></div></div><h4>Treino</h4><p>Acompanhamento próximo, técnica e segurança.</p></div>
+        <div class="day-step"><div class="top"><div class="num">5</div><div class="line"></div></div><h4>Tratamentos</h4><p>Recuperação para o corpo continuar evoluindo.</p></div>
+        <div class="day-step"><div class="top"><div class="num">6</div><div class="line"></div></div><h4>Relaxamento</h4><p>Um momento para desacelerar antes de seguir o dia.</p></div>
+        <div class="day-step"><div class="top"><div class="num">7</div></div><h4>Volta para casa</h4><p>Pronto para o resto do seu dia, com leveza.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section id="jornada">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Do primeiro contato aos resultados</span>
+      <h2>A jornada do aluno.</h2>
+    </div>
+    <div class="journey">
+      <div class="j reveal"><div class="n">01</div><h4>Agendamento</h4><p>Você entra em contato pelo WhatsApp.</p></div>
+      <div class="j reveal"><div class="n">02</div><h4>Avaliação</h4><p>Conhecemos sua rotina, histórico e objetivos.</p></div>
+      <div class="j reveal"><div class="n">03</div><h4>Plano personalizado</h4><p>Montamos um caminho feito para você.</p></div>
+      <div class="j reveal"><div class="n">04</div><h4>Primeiro atendimento</h4><p>Você conhece o espaço e a equipe.</p></div>
+      <div class="j reveal"><div class="n">05</div><h4>Acompanhamento</h4><p>Ajustes constantes conforme sua evolução.</p></div>
+      <div class="j reveal"><div class="n">06</div><h4>Resultados</h4><p>Mais saúde, disposição e qualidade de vida.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Diferenciais</span>
+      <h2>Detalhes que fazem diferença no seu dia.</h2>
+    </div>
+    <div class="carousel-wrap">
+      <div class="diff-grid reveal" id="diffTrack">
+        <div class="diff-card"><div class="ic"><i class="ti ti-users"></i></div><h4>Apenas 6 alunos</h4><p>Cada aula é pequena por essência. Você tem espaço, silêncio e olhar dedicado.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-stethoscope"></i></div><h4>3 profissionais</h4><p>Três olhares treinados a cada sessão para corrigir, ajustar e proteger.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-user-check"></i></div><h4>Atendimento individual</h4><p>Um plano feito para o seu corpo, sua história e sua rotina — não para a média.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-leaf"></i></div><h4>Ambiente tranquilo</h4><p>Sem música alta, sem correria. Um lugar onde você desliga do mundo lá fora.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-shield-check"></i></div><h4>Estrutura premium</h4><p>Equipamentos selecionados, higiene impecável e um espaço pensado nos detalhes.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-activity"></i></div><h4>Recuperação muscular</h4><p>Cadeira massageadora, LED terapêutico, liberação miofascial e eletroestimulação.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-clipboard-check"></i></div><h4>Avaliação física</h4><p>Antes de qualquer treino: analisamos postura, mobilidade, dores e objetivos.</p></div>
+        <div class="diff-card"><div class="ic"><i class="ti ti-trending-up"></i></div><h4>Evolução constante</h4><p>Reavaliações periódicas para ajustar o plano e mostrar o que já mudou.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARACAO -->
+<section style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">A diferença é o cuidado</span>
+      <h2>Academia tradicional × Inspira.</h2>
+    </div>
+    <div class="compare reveal">
+      <div class="col trad">
+        <h3>Academia tradicional</h3>
+        <ul>
+          <li>— Turmas grandes, pouco acompanhamento</li>
+          <li>— Foco em estética e performance</li>
+          <li>— Sem avaliação aprofundada</li>
+          <li>— Sem estrutura de recuperação</li>
+          <li>— Ambiente agitado e barulhento</li>
+        </ul>
+      </div>
+      <div class="col insp">
+        <h3>Inspira Estúdio Personal</h3>
+        <ul>
+          <li><i class="ti ti-check"></i> 6 alunos por aula, 3 profissionais</li>
+          <li><i class="ti ti-check"></i> Saúde antes de estética</li>
+          <li><i class="ti ti-check"></i> Avaliação individual e contínua</li>
+          <li><i class="ti ti-check"></i> Recuperação corporal integrada</li>
+          <li><i class="ti ti-check"></i> Ambiente tranquilo, feito para desacelerar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECUPERACAO -->
+<section id="recuperacao">
+  <div class="wrap">
+    <div class="rec-layout">
+      <div class="rec-photo reveal"><i class="ti ti-armchair decor-ic"></i></div>
+      <div class="reveal">
+        <span class="eyebrow">Área de recuperação</span>
+        <h2 style="margin-top:14px;">Um espaço só para o seu corpo respirar.</h2>
+        <p style="color:var(--ink-soft);font-size:16px;margin-top:16px;">A recuperação é parte do treino — não um extra. Aqui você tem tecnologia e cuidado manual para se sentir bem antes, durante e depois de cada sessão.</p>
+        <div class="rec-grid">
+          <div class="rec-card"><div class="ric"><i class="ti ti-armchair"></i></div><div><h4>Cadeira massageadora</h4><p>Alivia tensões acumuladas do dia e prepara o corpo para descansar.</p></div></div>
+          <div class="rec-card"><div class="ric"><i class="ti ti-bulb"></i></div><div><h4>LED terapêutico</h4><p>Fotobiomodulação para acelerar a recuperação muscular e articular.</p></div></div>
+          <div class="rec-card"><div class="ric"><i class="ti ti-hand-stop"></i></div><div><h4>Liberação miofascial</h4><p>Trabalho manual e com ferramentas para soltar pontos de tensão.</p></div></div>
+          <div class="rec-card"><div class="ric"><i class="ti ti-bolt"></i></div><div><h4>Eletroestimulação</h4><p>Ativação e recuperação muscular sem sobrecarga articular.</p></div></div>
+          <div class="rec-card"><div class="ric"><i class="ti ti-refresh"></i></div><div><h4>Recuperação muscular</h4><p>Protocolos para reduzir dor, inflamação e tempo de recuperação.</p></div></div>
+          <div class="rec-card"><div class="ric"><i class="ti ti-moon"></i></div><div><h4>Alívio de tensões</h4><p>Um momento para desligar e devolver ao corpo o que ele pede.</p></div></div>
+        </div>
+        <div class="soon-strip"><i class="ti ti-sparkles"></i> Em breve — Espaço SPA, com novos tratamentos de recuperação e relaxamento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDADE -->
+<section style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pertencimento</span>
+      <h2>Você não treina sozinho.</h2>
+      <p>Aqui você cria hábitos, amizades e faz parte de uma comunidade que incentiva sua evolução.</p>
+    </div>
+    <div class="community-grid reveal">
+      <div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Equipe</span>
+      <h2>Quem cuida de você todos os dias.</h2>
+    </div>
+    <div class="carousel-wrap">
+      <div class="team-grid reveal" id="teamTrack">
+        <div class="team-card">
+          <div class="team-photo"></div>
+          <div class="team-body">
+            <h4>Carolina Almeida</h4>
+            <span class="role">Educação Física</span>
+            <p>"Acompanho cada aluno durante toda sua evolução, ajustando o treino conforme suas necessidades."</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"></div>
+          <div class="team-body">
+            <h4>Rafael Mendes</h4>
+            <span class="role">Fisioterapeuta</span>
+            <p>"Meu papel é garantir que cada movimento seja seguro, mesmo diante de dores ou limitações."</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"></div>
+          <div class="team-body">
+            <h4>Marina Costa</h4>
+            <span class="role">Pilates & Recuperação</span>
+            <p>"Gosto de ver o aluno sair mais leve do que chegou — no corpo e na mente."</p>
+          </div>
+        </div>
+      </div>
+      <div class="car-nav">
+        <button class="car-arrow prev" data-target="teamTrack" aria-label="Anterior"><i class="ti ti-chevron-left"></i></button>
+        <button class="car-arrow next" data-target="teamTrack" aria-label="Próximo"><i class="ti ti-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUCAO -->
+<section style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sem promessas de milagre</span>
+      <h2>Sua evolução ao longo do tempo.</h2>
+    </div>
+    <div class="evo-track reveal">
+      <div class="evo-step"><div class="p"></div><p>Primeiro mês</p></div>
+      <div class="evo-step"><div class="p"></div><p>Mais disposição</p></div>
+      <div class="evo-step"><div class="p"></div><p>Menos dores</p></div>
+      <div class="evo-step"><div class="p"></div><p>Mais força</p></div>
+      <div class="evo-step"><div class="p"></div><p>Mais mobilidade</p></div>
+      <div class="evo-step"><div class="p"></div><p>Mais qualidade de vida</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVAS SOCIAIS -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Quem já vive o Inspira</span>
+      <h2>Histórias reais, resultados reais.</h2>
+    </div>
+    <div class="carousel-wrap">
+      <div class="test-grid reveal" id="testTrack">
+        <div class="test-card">
+          <div class="test-video"><div class="play-btn"><i class="ti ti-player-play-filled"></i></div></div>
+          <div class="test-body"><p>"Voltei a subir escada sem dor no joelho."</p><b>Helena, 64 anos</b></div>
+        </div>
+        <div class="test-card">
+          <div class="test-video"><div class="play-btn"><i class="ti ti-player-play-filled"></i></div></div>
+          <div class="test-body"><p>"Depois da maternidade, foi aqui que recuperei minha disposição."</p><b>Fernanda, 34 anos</b></div>
+        </div>
+        <div class="test-card">
+          <div class="test-video"><div class="play-btn"><i class="ti ti-player-play-filled"></i></div></div>
+          <div class="test-body"><p>"Sinto que sou acompanhado de verdade, não só mais um na turma."</p><b>Diego, 27 anos</b></div>
+        </div>
+      </div>
+      <div class="car-nav">
+        <button class="car-arrow prev" data-target="testTrack" aria-label="Anterior"><i class="ti ti-chevron-left"></i></button>
+        <button class="car-arrow next" data-target="testTrack" aria-label="Próximo"><i class="ti ti-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Galeria</span>
+      <h2>Um pouco do nosso dia a dia.</h2>
+    </div>
+    <div class="gal-filters reveal">
+      <span>Pilates</span><span>Recuperação</span><span>Alunos</span><span>Ambiente</span><span>Tratamentos</span>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div>
+      <div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div>
+    </div>
+    <div style="text-align:center;margin-top:34px;" class="reveal">
+      <a class="btn btn-ghost" href="https://www.instagram.com/inspiraestudiopersonal/" target="_blank" rel="noopener">Ver mais no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos">
+  <div class="wrap">
+    <div class="plans-box reveal">
+      <span class="eyebrow">Sem pacote fechado</span>
+      <h2 style="margin-top:14px;">Nossos planos são montados conforme:</h2>
+      <ul>
+        <li><span class="m" style="width:22px;height:22px;border-radius:50%;background:var(--olive);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;"><i class="ti ti-check" style="font-size:12px;"></i></span> objetivo</li>
+        <li><span class="m" style="width:22px;height:22px;border-radius:50%;background:var(--olive);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;"><i class="ti ti-check" style="font-size:12px;"></i></span> frequência semanal</li>
+        <li><span class="m" style="width:22px;height:22px;border-radius:50%;background:var(--olive);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;"><i class="ti ti-check" style="font-size:12px;"></i></span> necessidades específicas</li>
+        <li><span class="m" style="width:22px;height:22px;border-radius:50%;background:var(--olive);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;"><i class="ti ti-check" style="font-size:12px;"></i></span> avaliação inicial</li>
+      </ul>
+      <div class="cta-center"><a class="btn btn-primary" href="https://wa.me/5562981466229?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20planos%20do%20Inspira." target="_blank" rel="noopener">Falar sobre planos no WhatsApp</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EM BREVE -->
+<section style="background:var(--bg-warm);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">O que vem por aí</span>
+      <h2>Em breve no Inspira.</h2>
+    </div>
+    <div class="soon-grid reveal">
+      <div class="s"><span>Em breve</span><h4>Espaço SPA</h4></div>
+      <div class="s"><span>Em breve</span><h4>Massoterapia</h4></div>
+      <div class="s"><span>Em breve</span><h4>Escalda-pés</h4></div>
+      <div class="s"><span>Em breve</span><h4>Novos tratamentos</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOJINHA -->
+<section id="lojinha">
+  <div class="wrap shop-layout">
+    <div class="reveal">
+      <span class="eyebrow">Lojinha</span>
+      <h2 style="margin-top:14px;">Itens selecionados para o seu dia.</h2>
+      <p style="color:var(--ink-soft);margin-top:16px;font-size:16px;max-width:440px;">Roupas, garrafas, bebidas, snacks e acessórios — tudo escolhido com o mesmo cuidado que aplicamos aos treinos.</p>
+      <div class="shop-grid-2">
+        <div class="shop-item"><div class="ic"><i class="ti ti-shirt"></i></div><div><h4>Roupas Inspira</h4><p>Cropped, camisetas e regatas em tecidos leves.</p></div></div>
+        <div class="shop-item"><div class="ic"><i class="ti ti-bottle"></i></div><div><h4>Garrafas</h4><p>Térmicas, com o logo em relevo suave.</p></div></div>
+        <div class="shop-item"><div class="ic"><i class="ti ti-bolt"></i></div><div><h4>Energéticos</h4><p>Selecionados, sem promessas milagrosas.</p></div></div>
+        <div class="shop-item"><div class="ic"><i class="ti ti-leaf"></i></div><div><h4>Snacks</h4><p>Barras, castanhas e opções sem açúcar.</p></div></div>
+      </div>
+    </div>
+    <div class="bath-card reveal">
+      <div class="bath-ic"><i class="ti ti-bath"></i></div>
+      <h3>Banheiro completo, para seguir direto para o seu dia.</h3>
+      <p>Contamos com estrutura de banho completa — para quem vem antes, depois ou no meio do expediente e precisa seguir de cara nova.</p>
+      <div class="bath-list">
+        <span>Chuveiro quente</span><span>Toalhas disponíveis</span><span>Amenities</span><span>Secador</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section>
+  <div class="wrap insta-layout">
+    <div class="reveal">
+      <span class="eyebrow">Instagram</span>
+      <h2 style="margin-top:14px;">@inspiraestudiopersonal</h2>
+      <p style="color:var(--ink-soft);margin-top:16px;font-size:16px;max-width:420px;">Acompanhe o dia a dia do estúdio, dicas de recuperação e histórias reais de quem redescobriu o próprio corpo.</p>
+      <div style="margin-top:28px;">
+        <a class="btn btn-primary" href="https://www.instagram.com/inspiraestudiopersonal/" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i> Seguir no Instagram</a>
+      </div>
+    </div>
+    <div class="insta-embed-wrap reveal">
+      <iframe
+        src="https://www.instagram.com/inspiraestudiopersonal/embed/"
+        width="400"
+        height="700"
+        frameborder="0"
+        scrolling="no"
+        allowfullscreen
+        loading="lazy"
+        title="Instagram do Inspira Estúdio Personal">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZACAO -->
+<section id="localizacao" style="background:var(--bg-warm);">
+  <div class="wrap loc-grid">
+    <div class="loc-map reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Rua+Felisberto+Correa+Bittencourt,+Silv%C3%A2nia+-+GO,+75180-000&output=embed"
+        width="100%" height="100%" style="border:0;display:block;"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa - Rua Felisberto Correa Bittencourt, Silvânia - GO">
+      </iframe>
+    </div>
+    <div class="loc-info reveal">
+      <span class="eyebrow">Onde estamos</span>
+      <h2 style="margin-top:14px;">Silvânia — GO</h2>
+      <p>Rua Felisberto Correa Bittencourt, Silvânia - GO, 75180-000</p>
+      <div class="hours">
+        <div><span>Segunda-feira</span><span>06h às 21h</span></div>
+        <div><span>Terça-feira</span><span>06h-12h / 15h-20h</span></div>
+        <div><span>Quarta-feira</span><span>06h às 21h</span></div>
+        <div><span>Quinta-feira</span><span>06h-12h / 15h-20h</span></div>
+        <div><span>Sexta-feira</span><span>06h-12h / 16h-20h</span></div>
+        <div><span>Sábado e domingo</span><span>Fechado</span></div>
+        <div><span>Telefone</span><span>(62) 98146-6229</span></div>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://wa.me/5562981466229?text=Ol%C3%A1%2C%20gostaria%20do%20endere%C3%A7o%20do%20Inspira." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Inspira+Estúdio+Personal+Silvânia" target="_blank" rel="noopener">Ver no Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Dúvidas</span>
+      <h2>Perguntas que recebemos todos os dias.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><div class="faq-q"><span>Nunca treinei. Posso começar?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim. A maioria dos nossos alunos começa do zero. A avaliação inicial define o ponto de partida ideal para você.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Tenho dor no joelho. Posso fazer?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim. Trabalhamos com fisioterapeuta em equipe, respeitando limitações e dores.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Quanto tempo dura uma aula?</span><span class="plus">+</span></div><div class="faq-a"><p>Em média, 50 minutos, incluindo avaliação de execução e ajustes individuais.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Tem estacionamento?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim, temos vagas disponíveis próximas ao estúdio.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Aceita idosos?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim, temos alunos de diversas idades, com planos voltados à longevidade e equilíbrio.</p></div></div>
+      <div class="faq-item highlight"><div class="faq-q"><span>Posso levar meu filho? Tem brinquedoteca?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim! Temos brinquedoteca própria, para você treinar com tranquilidade.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Preciso agendar?</span><span class="plus">+</span></div><div class="faq-a"><p>Sim, o primeiro passo é agendar sua avaliação pelo WhatsApp.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Quanto custa?</span><span class="plus">+</span></div><div class="faq-a"><p>O valor varia conforme seu plano e frequência. Fale com a gente para um orçamento personalizado.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><span>Quando percebo os primeiros resultados?</span><span class="plus">+</span></div><div class="faq-a"><p>Muitos alunos relatam mais disposição já nas primeiras semanas — resultados físicos vêm com consistência.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <span class="pill">Vagas limitadas</span>
+      <h2>Reserve sua avaliação e conheça o Inspira.</h2>
+      <p>Um espaço pensado para cuidar de você, do primeiro passo em diante.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.me/5562981466229?text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Inspira%20Est%C3%BAdio%20Personal." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/inspiraestudiopersonal/" target="_blank" rel="noopener">Ver Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">Inspira<span>ESTÚDIO PERSONAL</span></div>
+        <p style="color:var(--ink-soft);font-size:14px;margin-top:16px;max-width:260px;">Saúde antes de estética. Um estúdio boutique em Silvânia, GO, para cuidar de você.</p>
+      </div>
+      <div>
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="#inspira">O Inspira</a></li>
+          <li><a href="#para-quem">Para quem é</a></li>
+          <li><a href="#jornada">Jornada</a></li>
+          <li><a href="#recuperacao">Recuperação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Estúdio</h5>
+        <ul>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="https://wa.me/5562981466229" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/inspiraestudiopersonal/" target="_blank" rel="noopener">Instagram</a></li>
+          <li>Silvânia — GO</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Inspira Estúdio Personal. Todos os direitos reservados.</span>
+      <span>Feito com cuidado, em Silvânia.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // plan-card underline: hover on desktop (CSS), scroll-through highlight on mobile
+  const planIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.target.classList.toggle('in-view', e.isIntersecting); });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.plan-card').forEach(el => planIo.observe(el));
+
+  // diff-card highlight: hover on desktop (CSS), scroll-through highlight on mobile
+  const diffIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.target.classList.toggle('in-view', e.isIntersecting); });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.diff-card').forEach(el => diffIo.observe(el));
+
+  // carousels (Equipe, Depoimentos): auto-advance on mobile + arrow navigation
+  function setupCarousel(trackId, { interval = 4500 } = {}) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    const isMobile = () => window.matchMedia('(max-width:640px)').matches;
+    let timer = null;
+
+    function cardStep() {
+      const card = track.children[0];
+      if (!card) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function goTo(dir) {
+      if (!isMobile()) return;
+      const step = cardStep();
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      let target = track.scrollLeft + dir * step;
+      if (target < 5) target = dir < 0 ? maxScroll : 0;
+      else if (target > maxScroll - 5) target = dir > 0 ? 0 : maxScroll;
+      track.scrollTo({ left: target, behavior: 'smooth' });
+    }
+
+    function stopAutoplay() { if (timer) { clearInterval(timer); timer = null; } }
+    function startAutoplay() {
+      stopAutoplay();
+      if (!isMobile()) return;
+      timer = setInterval(() => goTo(1), interval);
+    }
+    function restartAutoplay() { stopAutoplay(); startAutoplay(); }
+
+    document.querySelectorAll(`.car-arrow[data-target="${trackId}"]`).forEach(btn => {
+      btn.addEventListener('click', () => {
+        goTo(btn.classList.contains('next') ? 1 : -1);
+        restartAutoplay();
+      });
+    });
+
+    track.addEventListener('touchstart', stopAutoplay, { passive: true });
+    track.addEventListener('mousedown', stopAutoplay);
+    track.addEventListener('touchend', restartAutoplay, { passive: true });
+    track.addEventListener('mouseup', restartAutoplay);
+
+    window.addEventListener('resize', () => { isMobile() ? startAutoplay() : stopAutoplay(); });
+    startAutoplay();
+  }
+  setupCarousel('teamTrack');
+  setupCarousel('testTrack');
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
